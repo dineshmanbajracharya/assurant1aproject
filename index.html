@@ -1,0 +1,487 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Copilot Integration Project</title>
+  <style>
+    :root {
+      --primary-color: #58a6ff;
+      --secondary-color: #161b22;
+      --accent-color: #8b949e;
+      --background-color: #0d1117;
+      --card-background-color: #161b22;
+      --timeline-color: #30363d;
+      --text-color: #c9d1d9;
+      --highlight-color: #1f6feb;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--primary-color);
+    }
+
+    a {
+      color: var(--highlight-color);
+      text-decoration: none;
+    }
+
+    .project-overview, .key-points, .action-items {
+      background-color: var(--card-background-color);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--timeline-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -17px;
+      background-color: var(--card-background-color);
+      border: 4px solid var(--highlight-color);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid var(--timeline-color);
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent var(--timeline-color);
+    }
+
+    .right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid var(--timeline-color);
+      border-width: 10px 10px 10px 0;
+      border-color: transparent var(--timeline-color) transparent transparent;
+    }
+
+    .right::after {
+      left: -16px;
+    }
+
+    .timeline-content {
+      padding: 20px 30px;
+      background-color: var(--card-background-color);
+      position: relative;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--highlight-color);
+      color: var(--text-color);
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #3a75bf;
+    }
+
+    @media screen and (max-width: 600px) {
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .left::before, .right::before {
+        left: 60px;
+      }
+
+      .left::after, .right::after {
+        left: 15px;
+      }
+
+      .right {
+        left: 0%;
+      }
+    }
+
+    .links-section {
+      background-color: var(--card-background-color);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    
+    .flowchart-container {
+      margin-bottom: 0; /* Ensures there's no bottom margin */
+    }
+
+    .flowchart {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto; /* Center the flowchart without additional margin */
+      margin-bottom: 0; /* Ensure no additional bottom margin on SVG, preventing extra space */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>GitHub Copilot Integration Project</h1>
+    </header>
+    <footer>
+        <a href="https://github.com/joewadk/btt-aistudio-project" class="btn" target="_blank">Go to GitHub Repository</a>
+      </footer>
+    <section class="project-overview">
+      <h2>Project Overview</h2>
+      <p>This project aims to develop a customized code base that integrates with GitHub Copilot, allowing private code bases to be searchable and suggested as top recommendations when developers query for code. We will create a dedicated workflow for accessing and interacting with this private codebase, hosted in our GitHub repository at <a href="https://github.com/joewadk/btt-aistudio-project" target="_blank">btt-aistudio-project</a>.</p>
+
+      <h3>1. Understand the Project Scope</h3>
+      <p>Objective: Build a private codebase on GitHub and integrate it with GitHub Copilot. The goal is to ensure that developers can query and get recommendations from the private codebase using Copilot.</p>
+      <ul>
+        <li><strong>Outcome:</strong> Allow Copilot to suggest code snippets from your private codebase.</li>
+        <li>Facilitate smooth communication between developers and Copilot through a Flask API.</li>
+        <li>Manage Docker containers to streamline and scale the integration process.</li>
+      </ul>
+
+      <h3>Workflow Overview</h3>
+      <p>Below is a detailed flowchart showing how our integration will work, from user requests to retrieving relevant code suggestions:</p>
+      <svg class="flowchart" xmlns="http://www.w3.org/2000/svg" width="200" height="1200" viewBox="0 0 200 1250">
+        <!-- Start with User Request -->
+        <rect x="30" y="50" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="80" font-size="15" text-anchor="middle" fill="#fff">User Request</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="100" x2="100" y2="150" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Check User Permissions -->
+        <rect x="30" y="150" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="180" font-size="15" text-anchor="middle" fill="#fff">Check Permissions</text>
+        <text x="100" y="195" font-size="13" text-anchor="middle" fill="#c9d1d9">Authentication & Audit</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="200" x2="100" y2="250" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Validate Request -->
+        <rect x="30" y="250" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="280" font-size="15" text-anchor="middle" fill="#fff">Validate Request</text>
+        <text x="100" y="295" font-size="13" text-anchor="middle" fill="#c9d1d9">Syntax & Semantics</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="300" x2="100" y2="350" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Query GitHub Repo -->
+        <rect x="30" y="350" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="380" font-size="15" text-anchor="middle" fill="#fff">Query GitHub Repo</text>
+        <text x="100" y="395" font-size="13" text-anchor="middle" fill="#c9d1d9">Fetch Codebase</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="400" x2="100" y2="450" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- API Request -->
+        <rect x="30" y="450" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="480" font-size="15" text-anchor="middle" fill="#fff">API Request</text>
+        <text x="100" y="495" font-size="13" text-anchor="middle" fill="#c9d1d9">Data Formatting</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="500" x2="100" y2="550" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Process via Flask -->
+        <rect x="30" y="550" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="580" font-size="15" text-anchor="middle" fill="#fff">Process via Flask</text>
+        <text x="100" y="595" font-size="13" text-anchor="middle" fill="#c9d1d9">Handle Logic</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="600" x2="100" y2="650" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Container Execution -->
+        <rect x="30" y="650" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="680" font-size="15" text-anchor="middle" fill="#fff">Container Execution</text>
+        <text x="100" y="695" font-size="13" text-anchor="middle" fill="#c9d1d9">Docker Services</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="700" x2="100" y2="750" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Perform Data Analysis -->
+        <rect x="30" y="750" width="140" height="60" fill="#8b949e" rx="10" ry="10"></rect>
+        <text x="100" y="780" font-size="15" text-anchor="middle" fill="#fff">Analyze Data</text>
+        <text x="100" y="795" font-size="13" text-anchor="middle" fill="#c9d1d9">Insights & ML</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="800" x2="100" y2="850" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Suggestion Synthesis -->
+        <rect x="30" y="850" width="140" height="60" fill="#8b949e" rx="15" ry="15"></rect>
+        <text x="100" y="880" font-size="15" text-anchor="middle" fill="#fff">Suggestion Synthesis</text>
+        <text x="100" y="895" font-size="13" text-anchor="middle" fill="#c9d1d9">Compile Data</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="900" x2="100" y2="950" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Generate Recommendations -->
+        <rect x="3" y="950" width="200" height="60" fill="#8b949e" rx="15" ry="15"></rect>
+        <text x="100" y="980" font-size="15" text-anchor="middle" fill="#fff">Generate Recommendations</text>
+        <text x="100" y="995" font-size="13" text-anchor="middle" fill="#c9d1d9">Output Code</text>
+
+        <!-- Arrow -->
+        <line x1="100" y1="1000" x2="100" y2="1050" stroke="#58a6ff" stroke-width="2"></line>
+
+        <!-- Feedback Loop -->
+        <rect x="30" y="1050" width="140" height="60" fill="#8b949e" rx="15" ry="15"></rect>
+        <text x="100" y="1080" font-size="15" text-anchor="middle" fill="#fff">Feedback Loop</text>
+        <text x="100" y="1095" font-size="13" text-anchor="middle" fill="#c9d1d9">Iterative Refinement</text>
+
+        <!-- Dashed line for Data Refinement -->
+        <line x1="100" y1="1100" x2="100" y2="1150" stroke="#58a6ff" stroke-dasharray="4 4" stroke-width="2"></line>
+
+        <!-- End with Data Refinement -->
+        <rect x="30" y="1150" width="140" height="60" fill="#8b949e" rx="15" ry="15"></rect>
+        <text x="100" y="1180" font-size="15" text-anchor="middle" fill="#fff">Data Refinement</text>
+        <text x="100" y="1195" font-size="13" text-anchor="middle" fill="#c9d1d9">Optimize Algorithms</text>
+      </svg>
+      </div>
+      
+    </section>
+
+    <section class="key-points">
+      <h2>Key Points</h2>
+      <ul>
+        <li>Develop a customized code base for GitHub Copilot integration.</li>
+        <li>Enable private code bases to be searchable and visible in Copilot.</li>
+        <li>Implement web scraping from GitHub for training data using Selenium.</li>
+        <li>Create a repository at <a href="https://github.com/joewadk/btt-aistudio-project" target="_blank">btt-aistudio-project</a>.</li>
+        <li>Use <strong>Selenium</strong> for automated browsing and data scraping to create a dataset.</li>
+        <li>Create a microservice using <strong>Flask</strong> for fetching the API.</li>
+        <li>Containerize applications using <strong>Docker</strong>.</li>
+        <li>Utilize GitHub Copilot, Llama, or other APIs for AI model implementation.</li>
+        <li>Adopt Agile methodology for organized project management.</li>
+      </ul>
+    </section>
+    
+    <section class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>2. Tools & Libraries to Download</h3>
+          <p>Development Environment:</p>
+          <ul>
+            <li>Install <strong>VSCode</strong> and the <a href="https://docs.github.com/en/copilot/getting-started-with-github-copilot" target="_blank">GitHub Copilot extension</a>.</li>
+            <li>Download and install <strong>Python</strong> <a href="https://www.python.org/downloads/" target="_blank">here</a>.</li>
+          </ul>
+          <p>Libraries:</p>
+          <ul>
+            <li>Install machine learning libraries: <strong>Pandas</strong>, <strong>Scikit-learn</strong>, <strong>TensorFlow</strong>, <strong>PyTorch</strong>.</li>
+            <li>Use <strong>Conda</strong> or <strong>Pyenv</strong> to manage virtual environments.</li>
+            <li>Install <strong>Docker</strong> from <a href="https://www.docker.com/" target="_blank">here</a>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>3. Initial Setup and Codebase Creation</h3>
+          <p>Set up a GitHub Repository:</p>
+          <ul>
+            <li>Create a new repository on GitHub for the project.</li>
+            <li>Build or use a simple sample (like a cybersecurity tool that checks compliance) as a starting point.</li>
+          </ul>
+          <p>Data Gathering:</p>
+          <ul>
+            <li>Use <strong>Selenium</strong> for automated browsing and data scraping.</li>
+            <li>Utilize GitHub’s API to extract necessary code snippets and documentation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>4. Integrating GitHub Copilot</h3>
+          <p>Customize GitHub Copilot:</p>
+          <ul>
+            <li>Study the <a href="https://huggingface.co/blog/personal-copilot" target="_blank">GitHub Copilot API</a> and personal examples.</li>
+            <li>Develop a microservice using a pre-trained LLM for codebase detection and recommendations.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>5. Microservice Development and Testing</h3>
+          <p>API Development:</p>
+          <ul>
+            <li>Use <strong>Flask</strong> or <strong>FastAPI</strong> to develop the microservice API that interfaces with GitHub Copilot.</li>
+          </ul>
+          <p>Testing:</p>
+          <ul>
+            <li>Test integration by querying Copilot and validating codebase suggestions.</li>
+            <li>Debug and refine to ensure accurate results.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>6. Prompt Engineering</h3>
+          <p>Optimize Copilot interaction:</p>
+          <ul>
+            <li>Craft effective prompts matching project goals.</li>
+            <li>Ensure top recommendations are relevant to the domain knowledge.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h3>7. Project Management</h3>
+          <p>Agile Development:</p>
+          <ul>
+            <li>Use <strong>Jira</strong> or <strong>GitHub Projects</strong> for task and milestone management.</li>
+            <li>Break the project into smaller tasks such as data gathering, API creation, integration, and testing.</li>
+            <li>Regularly review progress in stand-up meetings to ensure alignment and address challenges swiftly.</li>
+          </ul>
+          <p>Timeline & Milestones:</p>
+          <ul>
+            <li><strong>Milestone 0:</strong> Initial Planning and Kick-off Meeting</li>
+            <li><strong>Milestone 1:</strong> Set up the GitHub repositories and create initial project samples.</li>
+            <li><strong>Milestone 2:</strong> Complete data scraping using Selenium and prepare the dataset.</li>
+            <li><strong>Milestone 3:</strong> Set up the machine learning model using libraries like TensorFlow or PyTorch.</li>
+            <li><strong>Milestone 4:</strong> Develop the microservice using Flask/FastAPI for API interactions.</li>
+            <li><strong>Milestone 5:</strong> Integrate the microservice with the GitHub Copilot API for real-time code recommendations.</li>
+            <li><strong>Milestone 6:</strong> Conduct extensive testing and prompt engineering to refine interaction quality.</li>
+            <li><strong>Milestone 7:</strong> System review and user feedback session for continuous improvement.</li>
+            <li><strong>Milestone 8:</strong> Deploy the complete system and prepare for scaling within the organization.</li>
+            <li><strong>Milestone 9:</strong> Post-deployment evaluation and final project closure.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h3>8. Review and Deploy</h3>
+          <p>Evaluate Model Performance:</p>
+          <ul>
+            <li>Use metrics like <strong>BLEU</strong> and <strong>ROUGE</strong> for accuracy checks.</li>
+            <li>Prepare for integration and scaling in the organization.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="action-items">
+      <h2>Action Items</h2>
+      <ul>
+        <li>Prepare for a brainstorming session to finalize the project design.</li>
+        <li>Research the GitHub Copilot API for private codebase integration.</li>
+        <li>Start building the example project (e.g., cybersecurity-related) for integration testing.</li>
+        <li>Plan next steps and deliverables based on team discussions.</li>
+        <li>Clarify milestones and prepare the project plan before the next meeting.</li>
+      </ul>
+    </section>
+
+    <section class="links-section">
+      <h2>Project Communication and Resources</h2>
+      <ul>
+        <li>Documentation Google Drive: <a href="https://tinyurl.com/assurant-1a" target="_blank">https://tinyurl.com/assurant-1a</a></li>
+        <li>Slack Channel: <a href="https://virbreakthrou-bba7195.slack.com/archives/C07K5JUCY22" target="_blank">Community Channel</a></li>
+        <li>Challenge Advisor: Yingying Kang (<a href="mailto:Yingying.Kang@assurant.com">Yingying.Kang@assurant.com</a>)</li>
+        <li>Challenge Advisor: Chris Kwan (<a href="mailto:chris.kwan@assurant.com">chris.kwan@assurant.com</a>)</li>
+        <li>TA/Mentor: Daniel Shao (<a href="mailto:dws268@cornell.edu">dws268@cornell.edu</a>)</li>
+      </ul>
+    </section>
+
+    <footer>
+      <a href="https://github.com/joewadk/btt-aistudio-project" class="btn" target="_blank">Go to GitHub Repository</a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const timeline = document.querySelector('.timeline');
+      const timelineItems = document.querySelectorAll('.timeline-item');
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+      }
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, options);
+
+      timelineItems.forEach(item => {
+        item.style.opacity = 0;
+        item.style.transform = 'translateY(50px)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(item);
+      });
+    });
+  </script>
+</body>
+</html>
